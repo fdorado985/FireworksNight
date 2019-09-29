@@ -18,3 +18,12 @@ Create fireworks displays using your fingers, touch the fireworks of the same co
       * Change the size for **W:1024** **H:768** to match iPad `landscape` size.
           > Although there are iPads much bigger, `SpriteKit` takes care of it, so don't worry about this size.
   * Delete `Actions.sks`, move it to trash.
+
+### feature/ready-aim-fire
+| Screenshot 01 | Screenshot 02 |
+| ------------- | ------------- |
+| ![screenshot01.png](.screenshots/screenshot01.png) | ![screenshot02.png](.screenshots/screenshot02.png) |
+
+| Screenshot 03 | Screenshot 04 |
+| ------------- | ------------- |
+| ![screenshot03.png](.screenshots/screenshot03.png) | ![screenshot04.png](.screenshots/screenshot04.png) |
