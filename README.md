@@ -5,6 +5,6 @@
 [![Game Technology: SpriteKit](https://img.shields.io/badge/Game%20Technology-SpriteKit-purple)](https://developer.apple.com/spritekit/)
 
 ## Description
-Create fireworks displays using your fingers, touch the fireworks of the same color, shake the device and see them eplode.
+Create fireworks displays using your fingers, touch the fireworks of the same color, shake the device and see them explode.
 
 ## Demo
