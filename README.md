@@ -27,3 +27,8 @@ Create fireworks displays using your fingers, touch the fireworks of the same co
 | Screenshot 03 | Screenshot 04 |
 | ------------- | ------------- |
 | ![screenshot03.png](.screenshots/screenshot03.png) | ![screenshot04.png](.screenshots/screenshot04.png) |
+
+### feature/swipe-to-select
+| Screenshot 05 | Screenshot 06 |
+| ------------- | ------------- |
+| ![screenshot05.png](.screenshots/screenshot05.png) | ![screenshot06.png](.screenshots/screenshot06.png) |

@@ -42,6 +42,33 @@ class GameScene: SKScene {
     gameTimer = Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(launchFireworks), userInfo: nil, repeats: true)
   }
 
+  // MARK: - Touches events
+
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    super.touchesBegan(touches, with: event)
+    checkTouches(touches)
+  }
+
+  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    super.touchesMoved(touches, with: event)
+    checkTouches(touches)
+  }
+
+  // MARK: - Update event
+
+  override func update(_ currentTime: TimeInterval) {
+    super.update(currentTime)
+
+    // reversed to let it count... 4, 3, 2, 1... in the other way... if we delete for example in 1, 2, 3, 4... the number 3... number 4 moves down and there is a new number 3 that we are going to ignore.
+    for (index, firework) in fireworks.enumerated().reversed() {
+      if firework.position.y > 900 {
+        // this uses a position high above so that rockets can explode off screen
+        fireworks.remove(at: index)
+        firework.removeFromParent()
+      }
+    }
+  }
+
   // MARK: - Methods
 
   @objc func launchFireworks() {
@@ -97,7 +124,7 @@ class GameScene: SKScene {
     // give the firework sprite node one of three random colors
     switch Int.random(in: 0...2) {
     case 0:
-      firework.color = .cyan // cyan instead of blue because it isn't particularly visible on a starry sky background picture
+      firework.color = .magenta // magenta instead of blue because it isn't particularly visible on a starry sky background picture
     case 1:
       firework.color = .green
     case 2:
@@ -124,5 +151,46 @@ class GameScene: SKScene {
     // add the firework to our fireworks array and also to the scene
     fireworks.append(node)
     addChild(node)
+  }
+
+  func checkTouches(_ touches: Set<UITouch>) {
+    // get the point of first touch in a set of touches
+    guard let touch = touches.first else {
+      return
+    }
+
+    // get the location of the touch
+    let location = touch.location(in: self)
+    // get all the touched nodes on that location
+    let nodesAtPoint = nodes(at: location)
+
+    // iterate through each nodes and try to cast it on any SKSpriteNode
+    for case let node as SKSpriteNode in nodesAtPoint {
+      // look for our 'firework' nodes
+      guard node.name == "firework" else {
+        continue
+      }
+
+      // iterate through each node
+      for parent in fireworks {
+        // get the children of our container and cast it as skspritenode
+        guard let firework = parent.children.first as? SKSpriteNode else {
+          continue
+        }
+
+        // check if it was selected and the current firework selected is of different color
+        if firework.name == "selected" && firework.color != node.color {
+          // return to the original name
+          firework.name = "firework"
+          // return to the original|old color
+          firework.colorBlendFactor = 1
+        }
+      }
+
+      // change the name to selected
+      node.name = "selected"
+      // and return the color to pure white
+      node.colorBlendFactor = 0
+    }
   }
 }
