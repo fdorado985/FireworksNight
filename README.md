@@ -32,3 +32,8 @@ Create fireworks displays using your fingers, touch the fireworks of the same co
 | Screenshot 05 | Screenshot 06 |
 | ------------- | ------------- |
 | ![screenshot05.png](.screenshots/screenshot05.png) | ![screenshot06.png](.screenshots/screenshot06.png) |
+
+### feature/making-things-go-bang
+| Screenshot 07 |
+| ------------- |
+| ![screenshot07.png](.screenshots/screenshot07.png) |
