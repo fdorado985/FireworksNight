@@ -37,3 +37,12 @@ Create fireworks displays using your fingers, touch the fireworks of the same co
 | Screenshot 07 |
 | ------------- |
 | ![screenshot07.png](.screenshots/screenshot07.png) |
+
+### feature/challenge
+| Screenshot 08 (Add score label) | Screenshot 09 (Finish the game after some rounds) |
+| ------------- | ------------- |
+| ![screenshot08.png](.screenshots/screenshot08.png) | ![screenshot09.png](.screenshots/screenshot09.png) |
+
+| Screenshot 10 (Remove particles after certain time) |
+| ------------- |
+| ![screenshot10.png](.screenshots/screenshot10.png) |
