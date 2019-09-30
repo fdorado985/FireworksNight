@@ -21,10 +21,13 @@ class GameScene: SKScene {
   let bottomEdge = -22
   let rightEdge = 1024 + 22
 
+  var numOfRounds = 0
+
+  var scoreLabel: SKLabelNode!
   // the score will track the player's score
   var score = 0 {
     didSet {
-      // your code here
+      scoreLabel.text = "Score: \(score)"
     }
   }
 
@@ -37,6 +40,13 @@ class GameScene: SKScene {
     background.blendMode = .replace // ignores alphas
     background.zPosition = -1
     addChild(background)
+
+    // add the score
+    scoreLabel = SKLabelNode(fontNamed: "Chalkduster") // create the label with chalkduster font
+    scoreLabel.position = CGPoint(x: 16, y: 16) // give the position on the top left of the screen
+    scoreLabel.horizontalAlignmentMode = .left // align the text to the left
+    addChild(scoreLabel) // add the label to our scene
+    score = 0
 
     // call the method launchFireworks() each 6 seconds
     gameTimer = Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(launchFireworks), userInfo: nil, repeats: true)
@@ -72,6 +82,19 @@ class GameScene: SKScene {
   // MARK: - Methods
 
   @objc func launchFireworks() {
+    numOfRounds += 1
+
+    if numOfRounds > 15 {
+      let gameOver = SKSpriteNode(imageNamed: "gameOver") // create a new node with the game over image
+      gameOver.position = CGPoint(x: 512, y: 384) // add on the center of the screen
+      gameOver.zPosition = 1 // put the node over eveything
+      addChild(gameOver) // add it to the screen
+
+      gameTimer?.invalidate()
+
+      return
+    }
+
     let movementAmount: CGFloat = 1800
 
     switch Int.random(in: 0...3) {
@@ -200,6 +223,13 @@ class GameScene: SKScene {
     if let emitter = SKEmitterNode(fileNamed: "explode") {
       emitter.position = firework.position
       addChild(emitter)
+
+      let delay = SKAction.wait(forDuration: 1.5)
+      let removeEmitter = SKAction.run {
+        emitter.removeFromParent()
+      }
+
+      scene?.run(SKAction.sequence([delay, removeEmitter]))
     }
 
     firework.removeFromParent()
